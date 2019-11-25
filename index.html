@@ -28,114 +28,74 @@
 				<div class="prompt-box">
 					<div class="prompt-box-text">
 						<span class="prompt-box-text-number">1</span>
-						<span class="prompt-box-text-content">牢记验证码，点击开始录制</span> 
+						<span class="prompt-box-text-content">点击“开始认证”，开始录制</span> 
 						<span class="prompt-box-text-border"></span></div><div class="prompt-box-text">
 						<span class="prompt-box-text-number">2</span>
-						<span class="prompt-box-text-content">开启前置摄像头，普通话朗读数字</span> 
+						<span class="prompt-box-text-content">录制时间为3秒，三秒后自动上传</span> 
 						<span class="prompt-box-text-border"></span></div><div class="prompt-box-text">
 						<span class="prompt-box-text-number">3</span>
 						<span class="prompt-box-text-content">完成录制，等待验证结果</span>
 					</div>
 				</div> 
-				<span class="prompt-next nextVideo">活体人脸认证</span>
+				<div class="video-modal-wrapper video-modal-point">
+					<span class="prompt-next nextVideo">开始认证</span> 
+					<input type="file" accept="video/*" capture="camcorder" class="camera-input video" id="video">
+				</div>
+			
 			</div> 
 			
-			<div class="modal-layer" style="display:none;">
-				<div class="modal-layer-mask"></div> 
-				<div class="modal-layer-popup">
-					<div class="modal-layer-success">
-						<div class="modal-layer-popup-title">请牢记以下验证码</div> 
-					<div class="modal-layer-popup-content">此验证码将于<span>48</span>秒后过期<br>用普通话朗读数字，视频时长<span>3-6</span>秒最佳</div> 
-					<div class="modal-layer-popup-number">
-						<span>4</span>
-						<span>6</span>
-						<span>9</span>
-					</div> 
-					<div class="modal-wrapper modal-point">
-						<span class="modal-confirm-btn">记住了，开始录制</span> 
-						<input type="file" accept="video/*" capture="user" class="camera-input video" id="video">
-					</div>
-				</div>
-				<span class="modal-layer-close"></span>
-			</div>
-			</div>
-			
-			<div class="loading" style="display:none;"><div class="loading-icon">验证中...</div></div>
+			<div class="loading" style="display:none;"><i class="loading-icon">验证中...</i></div>
 		</div>
 		
 		
 		<script src="js/jquery-3.2.1.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script type="text/javascript">
-			//读秒60
-				function settime(seconds){
-					if(seconds > 1){
-						seconds--;
-						$(".modal-layer-popup-content").html("此验证码将于<span>"+seconds+"</span>秒后过期<br>用普通话朗读数字，视频时长<span>3-6</span>秒最佳");
-						tmid = setTimeout(function(){
-							settime(seconds)
-						},1000)
-					}else{
-						$(".modal-layer-popup-number").html("<span>"+Math.floor(Math.random()*10)+"</span><span>"+Math.floor(Math.random()*10)+"</span><span>"+Math.floor(Math.random()*10)+"</span><span>"+Math.floor(Math.random()*10)+"</span>");
-						settime(60);
-					}
-				}
-				//活体下一步
-				$(".nextVideo").click(function(){
-					$(".modal-layer").show();
-					$(".modal-layer-popup-number").html("<span>"+Math.floor(Math.random()*10)+"</span><span>"+Math.floor(Math.random()*10)+"</span><span>"+Math.floor(Math.random()*10)+"</span><span>"+Math.floor(Math.random()*10)+"</span>");
-					settime(60);
-				})
-				$(".modal-layer-close").click(function(){
-					$(".modal-layer").hide();
-					window.clearTimeout(tmid);
-				});
+			
 			//活体视频上传
+				var name = "name";
+				var cardId = "123123";
 				$("#video").change(function(){
 					var file = $("#video").get(0).files[0];
 					var fileSize =(this.files[0].size) / (1024*1024);//转换成M
+					console.log(file);
 					fileSize = fileSize.toFixed(0);//保留小数点后一位
-					if(fileSize > 18){
-						$(".LivAlert").html("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>视频时间，建议在3-6秒</div>");
-						$(".modal-layer").hide();
-						window.clearTimeout(tmid);
-						return;
-					}else{ 
+					
 					alert("发送");
-						$(".loading").show();
-						var parameter={};
-						parameter["name"]=name;
-						parameter["cardId"]=cardId;
-						
-						var formData = new FormData();
-						formData.append("data", parameter);
-						formData.append("video", file);
-							$.ajax({
-								type: "POST",
-								url: "###",
-								data: formData,
-								processData: false,
-								contentType: false,
-								xhr: function() {
-									myXhr = $.ajaxSettings.xhr();
-									return myXhr
-								},
-								success: function(data) {
-									//fileRequestData = data
-									alert("成功发送："+data);
-									Submit(data);
-								},
-								error: function(jqXHR, textStatus, errorThrown) {
-									$(".LivAlert").html("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>服务器异常:"+jqXHR.status+":"+jqXHR.statusText+"</div>");
-									alert("错误返回："+jqXHR.status+":"+jqXHR.statusText);
-									$(".loading").hide();
-									$(".modal-layer").hide();
-									window.clearTimeout(tmid);
-									//window.location.reload();
-									//HJSJ.prompts("error",jqXHR.status+":"+jqXHR.statusText);
-								}
-							})
-					}
+					
+					$(".loading").show();
+					var parameter={};
+					parameter["name"]=name;
+					parameter["cardId"]=cardId;
+					
+					var formData = new FormData();
+					formData.append("data", parameter);
+					formData.append("video", file);
+					$.ajax({
+						type: "POST",
+						url: "###",
+						data: formData,
+						processData: false,
+						contentType: false,
+						xhr: function() {
+							myXhr = $.ajaxSettings.xhr();
+							return myXhr
+						},
+						success: function(data) {
+							//fileRequestData = data
+							alert("成功发送："+data);
+							Submit(data);
+						},
+						error: function(jqXHR, textStatus, errorThrown) {
+							$(".LivAlert").html("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>服务器异常:"+jqXHR.status+":"+jqXHR.statusText+"</div>");
+							alert("错误返回："+jqXHR.status+":"+jqXHR.statusText);
+							$(".loading").hide();
+							$(".modal-layer").hide();
+							window.clearTimeout(tmid);
+							//window.location.reload();
+							//HJSJ.prompts("error",jqXHR.status+":"+jqXHR.statusText);
+						}
+					})
 				})
 		</script>
 	</body>

@@ -163,7 +163,7 @@ body, html {
 	background:#0073eb;font-size:1.333rem;color:#fff
 }
 .modal-layer-fail-restart,.modal-layer .modal-wrapper{
-	height:4.083rem;text-align:center;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;line-height:4.083rem;position:absolute;width:24rem;bottom:.84rem
+	height:4.083rem;text-align:center;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;line-height:4.083rem;position:absolute;width:22.5rem;bottom:.84rem
 }
 .modal-layer .modal-wrapper{
 	background:#bcd2eb
@@ -174,7 +174,7 @@ body, html {
 .modal-layer .modal-confirm-btn{
 	font-size:16px;color:#fff;width:100%;height:100%
 }
-.modal-layer .camera-input{
+.modal-layer .camera-input,.video-modal-wrapper .camera-input{
 	position:absolute;left:0;top:0;width:100%;height:100%;opacity:0
 }
 .loading{
