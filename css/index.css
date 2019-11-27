@@ -115,7 +115,20 @@ body, html {
 	height:1.9rem;margin:.417rem 0 .417rem .59rem;width:0;border-left:1px dotted #0073eb;display:block
 }
 .prompt-next{
-	margin:0 auto;height:4.083rem;line-height:4.083rem;text-align:center;background:#0073eb;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;color:#fff;display:block;width:28.75rem;font-size:16px;outline:none;border:none
+	margin:0 auto;
+	height:4.083rem;
+	line-height:4.083rem;
+	text-align:center;
+	background:#0073eb;
+	-webkit-border-radius:4px;
+	-moz-border-radius:4px;
+	border-radius:4px;
+	color:#fff;
+	display:block;
+	width:100%;
+	font-size:16px;
+	outline:none;
+	border:none
 }
 .prompt-next-disabled{
 	background-color:#ccc
@@ -150,7 +163,8 @@ body, html {
 }
 .modal-layer-close{
 	outline:none;position:absolute;width:3.666rem;height:3.666rem;left:50%;bottom:-9.875rem;margin-left:-1.833rem;background:url(../img/icon_close.png) 0 0 no-repeat;-moz-background-size:100% auto;background-size:100% auto
-}.modal-layer-fail-icon{
+}
+.modal-layer-fail-icon{
 	width:3.192rem;height:2.74rem;margin:2.096rem auto 2.925rem;background:url(../img/icon_close.png) 0 0 no-repeat;-moz-background-size:100% auto;background-size:100% auto
 }
 .modal-layer-fail-title{
@@ -159,16 +173,22 @@ body, html {
 .modal-layer-fail-detail{
 	font-size:1.166rem;color:#666;text-align:center
 }
-.modal-layer-fail-restart{
-	background:#0073eb;font-size:1.333rem;color:#fff
+.prompt .video-modal-wrapper{
+	height:4.083rem;
+	text-align:center;
+	-webkit-border-radius:4px;
+	-moz-border-radius:4px;
+	border-radius:4px;
+	line-height:4.083rem;
+	position:relative;
+	width:88%;
+	left: 6%;
+	bottom:.84rem
 }
-.modal-layer-fail-restart,.modal-layer .modal-wrapper{
-	height:4.083rem;text-align:center;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;line-height:4.083rem;position:absolute;width:22.5rem;bottom:.84rem
+.prompt .video-modal-wrapper{
+	background:#bcd2eb;
 }
-.modal-layer .modal-wrapper{
-	background:#bcd2eb
-}
-.modal-layer .modal-wrapper.modal-point{
+.modal-layer .video-modal-wrapper.modal-point{
 	background:#0073eb
 }
 .modal-layer .modal-confirm-btn{
